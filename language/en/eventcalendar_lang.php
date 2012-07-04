@@ -10,6 +10,8 @@ $lang['module_eventcalendar_label_event_date']      = 'Event Date';
 $lang['module_eventcalendar_label_event_start_date']= 'Start Date';
 $lang['module_eventcalendar_label_event_end_date']  = 'End Date';
 $lang['module_eventcalendar_label_article']         = 'Article';
+$lang['module_eventcalendar_label_display_lang']    = 'Displayed Language';
+
 
 
 $lang['module_eventcalendar_event_added']           = 'Event Successfully Saved';
