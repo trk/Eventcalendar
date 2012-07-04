@@ -14,6 +14,7 @@ class Eventcalendar extends Module_Admin {
         // Load Event Calendar Model File
         $this->load->model('Eventcalendar_model', 'eventcalendar_model', true);
         $this->load->model('Eventcalendarcategory_model', 'eventcalendarcategory_model', true);
+        $this->load->model('Article_model', 'article_model', true);
         
         // Controller Database Tables
         $this->table        = 'module_eventcalendar';
@@ -26,10 +27,32 @@ class Eventcalendar extends Module_Admin {
 
     function index() {
         
-        $this->template['events'] = $this->eventcalendar_model->getEvents();
-        $this->template['categories'] = $this->eventcalendar_model->getCategories();
-
+        $this->template['events'] = self::_get_events();
+        $this->template['categories'] = $this->eventcalendarcategory_model->get_list();
+        
         $this->output($this->controller_folder . 'index');
+    }
+    
+    function _get_events() {
+        
+        $data = array();
+        
+        $events     = $this->eventcalendar_model->get_lang_list(FALSE, Settings::get_lang());
+        $categories = $this->eventcalendarcategory_model->get_lang_list(FALSE, Settings::get_lang());
+        $articles   = $this->article_model->get_lang_list(FALSE, Settings::get_lang());
+        
+        foreach ($events as $Ekey => $Evalue) {
+            if($Evalue['id_category'] != 0 && $Evalue['id_category'] != '')
+                foreach ($categories as $Ckey => $Cvalue)
+                    if($Cvalue['id_category'] == $Evalue['id_category'] && $Cvalue['lang'] == $Evalue['lang'])
+                        $events[$Ekey]['category'] = $Cvalue;
+            if($Evalue['id_article'] != 0 && $Evalue['id_article'] != '')
+                foreach ($articles as $Akey => $Avalue)
+                    if($Avalue['id_article'] == $Evalue['id_article'] && $Avalue['lang'] == $Evalue['lang'])
+                        $events[$Ekey]['article'] = $Cvalue;
+        }
+        
+        return $events;
     }
     
     function save() {
@@ -145,6 +168,8 @@ class Eventcalendar extends Module_Admin {
             foreach ($fields as $field) {
                 if ($this->input->post($field . '_' . $language['lang']) !== false) {
                     $this->lang_data[$language['lang']][$field] = $this->input->post($field . '_' . $language['lang']);
+                } else {
+                    $this->lang_data[$language['lang']][$field] = '';
                 }
             }
         }

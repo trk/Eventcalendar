@@ -6,10 +6,12 @@ $lang['module_eventcalendar_subtitle']         = 'You can create multi language 
 
 // Event Calendar Labels
 $lang['module_eventcalendar_label_add_new_event']   = 'Add New Event';
-$lang['module_eventcalendar_label_event_name']            = 'Event Name';
-$lang['module_eventcalendar_label_event_date']            = 'Event Date';
-$lang['module_eventcalendar_label_event_start_date']      = 'Start Date';
-$lang['module_eventcalendar_label_event_end_date']        = 'End Date';
+$lang['module_eventcalendar_label_event_date']      = 'Event Date';
+$lang['module_eventcalendar_label_event_start_date']= 'Start Date';
+$lang['module_eventcalendar_label_event_end_date']  = 'End Date';
+$lang['module_eventcalendar_label_article']         = 'Article';
+
+
 $lang['module_eventcalendar_event_added']           = 'Event Successfully Saved';
 $lang['module_eventcalendar_event_nadded']          = 'Event Not Saved, Event Name And Event Dates Are Required Fields';
 $lang['module_eventcalendar_event_deleted']         = 'Event Successfully Deleted';

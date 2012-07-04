@@ -17,7 +17,9 @@
             <column name="updater" type="varchar" length="255"></column>
             <column name="created" type="datetime" zerofill="NOT NULL"></column>
             <column name="updated" type="datetime"></column>
-            <column name="id_category" type="int" length="11" attributes="UNSIGNED" zerofill="NOT NULL" ></column>
+            <column name="id_category" type="int" length="11" attributes="UNSIGNED"></column>
+            <column name="id_article" type="int" length="11" attributes="UNSIGNED"></column>
+            
         </table>
         
         <!-- Event Calendar Lang Table -->
