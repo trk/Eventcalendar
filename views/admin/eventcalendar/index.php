@@ -142,6 +142,10 @@
                                 <div class="text">
                                     <table>
                                         <tbody>
+                                            <tr>
+                                                <td class="left strong w140"><?= lang('') ?></td>
+                                                <td class="left"><img class="pr5" src="<?= theme_url() ?>images/world_flags/flag_<?= Settings::get_lang() ?>.gif" /></td>
+                                            </tr>
                                             <?php if(! empty($event['article'])): ?>
                                                 <tr>
                                                     <td class="left strong w140"><?= lang('module_eventcalendar_label_article') ?></td>
@@ -173,7 +177,7 @@
                                             </tr>
                                             <tr>
                                                 <td class="left strong w140"><?= lang('ionize_label_url') ?></td>
-                                                <td class="left"><?= $event['url'] ?> <?php if($event['url'] != ''): ?><a href="<?= $event['url'] ?>" title="<?= $event['title'] ?>">Got To URL</a><?php endif; ?></td>
+                                                <td class="left"><?= $event['url'] ?> <?php if($event['url'] != ''): ?><a target="_blank" href="<?= $event['url'] ?>" title="<?= $event['title'] ?>">Got To URL</a><?php endif; ?></td>
                                             </tr>
                                             <tr>
                                                 <td class="left strong w140"><?= lang('ionize_label_subtitle') ?></td>
@@ -328,8 +332,6 @@
 
     };
 
-    $$('#eventsTable tbody tr td .toggler').addEvent('click', toggleEvent);
-    $$('#eventsTable tbody tr td.title').addEvent('click', function(e){this.getElement('.toggler').fireEvent('click', e)});
-    $$('#eventsTable tbody tr td .content').addEvent('click', function(e){this.getParent('td').getElement('.toggler').fireEvent('click', e)});
+    $$('#eventsTable tbody tr td .toggler').addEvent('click', toggleEvent);    
     
 </script>
