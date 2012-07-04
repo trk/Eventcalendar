@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+div.moocolorcheckbox {
+width: 24px;
+height: 24px;
+margin: 4px 2px 4px 0px;
+border: 1px solid white;
+border-radius: 4px;
+-moz-border-radius: 4px;
+-moz-box-shadow: 1px 1px 5px #cccccc;
+overflow: hidden;
+}
+
+div.moocolorcheckbox_selected {
+width: 32px;
+height: 32px;
+margin: 0px 2px 0px 0px;
+}
