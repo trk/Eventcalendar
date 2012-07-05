@@ -71,6 +71,7 @@ $lang['module_eventcalendar_today'] = 'Today';
 $lang['module_eventcalendar_month'] = 'Month';
 $lang['module_eventcalendar_week'] = 'Week';
 $lang['module_eventcalendar_day'] = 'Day';
+$lang['module_eventcalendar_allday'] = 'All Days';
 
 // Other Translations
 $lang['module_eventcalendar_loading'] = 'Loading...';

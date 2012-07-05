@@ -61,6 +61,7 @@ $lang['module_eventcalendar_today'] = 'Bugün';
 $lang['module_eventcalendar_month'] = 'Ay';
 $lang['module_eventcalendar_week'] = 'Hafta';
 $lang['module_eventcalendar_day'] = 'Gün';
+$lang['module_eventcalendar_allday'] = 'Tüm Günler';
 
 // Other Translations
 $lang['module_eventcalendar_loading'] = 'Yükleniyor...';
