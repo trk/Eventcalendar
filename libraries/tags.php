@@ -3,213 +3,224 @@
 /**
  * Event Calendar TagManager
  */
-class Eventcalendar_Tags
+class Eventcalendar_Tags extends TagManager
 {
-	/**
-	 * <ion:eventcalendar>
-	 *      ..........
-	 * </ion:eventcalendar>
-	 */
-	public static function index(FTL_Binding $tag)
-	{
-		$str = $tag->expand();
-		return $str;
-	}
+    public static $ci	=	NULL;
 
-	/**
-	 * <ion:eventcalendar>
-	 *      <ion:events>
-	 *          ..........
-	 *      </ion:events>
-	 * </ion:eventcalendar>
-	 */
-	public static function events(FTL_Binding $tag)
-	{
-		$CI =& get_instance();
-		// Loading Eventcalendar Model
-		if (!isset($CI->eventcalendar_model)) $CI->load->model('eventcalendar_model', '', true);
+    /**
+     * If need load a model use this function
+     * 	@usage :
+     * 		self::load_model('your_model_name', 'your_mode_short_name');
+     */
+    private static function load_model($model_name, $new_name='') {
 
-		// Loading Events
-		$events = $CI->eventcalendar_model->getEvents();
+        if (!isset(self::$ci->{$new_name}))
+            self::$ci->load->model($model_name, $new_name, true);
+    }
+    
+    /**
+     * @usage	<ion:eventcalendar>
+     *              ...
+     * 		</ion:eventcalendar>
+     */
+    public static function index(FTL_Binding $tag) {
+        self::$ci = &get_instance();
 
-		if (isset($events))
-			$tag->locals->count = sizeof( $events );
-		else
-			$tag->locals->count = 0;
+        return $tag->expand();
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:count_all />
+     */
+    public static function count_all($tag)
+    {
+        self::load_model('Eventcalendar_model', 'eventcalendar_model');
+		
+        $output = self::$ci->eventcalendar_model->count_all();
 
-		$output = "";
+        return $output;
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events>
+     * 			.................
+     *          </ion:eventcalendar:events>
+     */
+    public static function events(FTL_Binding $tag)
+    {
+        self::load_model('Eventcalendar_model', 'eventcalendar_model');
+        
+        $output = '';
+		
+        $events = self::$ci->eventcalendar_model->_get_events(FALSE, Settings::get_lang());
 
-		foreach ($events as $event)
-		{
-			$tag->locals->event  = $event;
+        if(count($events) > 0) {
+            
+            foreach($events as $key => $value) {
 
-			$tag->locals->event_lang =  $CI->eventcalendar_model->getEventLang($event['id_event'],Settings::get_lang());
+                $tag->locals->event = $value;
 
-			$tag->locals->event_category =  $CI->eventcalendar_model->getCategory($event['id_category']);
+                $output .= $tag->expand();
+            }
+        }
 
-			$output .= $tag->expand();
-		}
+        return $output;
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:id_event /> </ion:eventcalendar:events>
+     */
+    public static function id_event($tag) {
+        return self::wrap($tag, $tag->locals->event['id_event']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:title /> </ion:eventcalendar:events>
+     */
+    public static function title($tag) {
+        return self::wrap($tag, $tag->locals->event['title']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:subtitle /> </ion:eventcalendar:events>
+     */
+    public static function subtitle($tag) {
+        return self::wrap($tag, $tag->locals->event['subtitle']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:description /> </ion:eventcalendar:events>
+     */
+    public static function description($tag) {
+        return self::wrap($tag, $tag->locals->event['description']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:url /> </ion:eventcalendar:events>
+     */
+    public static function url($tag) {
+        return self::wrap($tag, $tag->locals->event['url']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:start_date /> </ion:eventcalendar:events>
+     */
+    public static function start_date($tag) {
+        return self::wrap($tag, $tag->locals->event['start_date']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:end_date /> </ion:eventcalendar:events>
+     */
+    public static function end_date($tag) {
+        return self::wrap($tag, $tag->locals->event['end_date']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:author /> </ion:eventcalendar:events>
+     */
+    public static function author($tag) {
+        return self::wrap($tag, $tag->locals->event['author']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:updater /> </ion:eventcalendar:events>
+     */
+    public static function updater($tag) {
+        return self::wrap($tag, $tag->locals->event['updater']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:created /> </ion:eventcalendar:events>
+     */
+    public static function created($tag) {
+        return self::wrap($tag, $tag->locals->event['created']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:updated /> </ion:eventcalendar:events>
+     */
+    public static function updated($tag) {
+        return self::wrap($tag, $tag->locals->event['updated']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:updated /> </ion:eventcalendar:events>
+     */
+    public static function id_category($tag) {
+        return self::wrap($tag, $tag->locals->event['id_category']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:id_article /> </ion:eventcalendar:events>
+     */
+    public static function id_article($tag) {
+        return self::wrap($tag, $tag->locals->event['id_article']);
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:category_title /> </ion:eventcalendar:events>
+     */
+    public static function category_title($tag) {
+        if(! empty($tag->locals->event['category']))
+            return self::wrap($tag, $tag->locals->event['category']['title']);
+        return '';
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:category_subtitle /> </ion:eventcalendar:events>
+     */
+    public static function category_subtitle($tag) {
+        if(! empty($tag->locals->event['category']))
+            return self::wrap($tag, $tag->locals->event['category']['subtitle']);
+        return '';
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:category_description /> </ion:eventcalendar:events>
+     */
+    public static function category_description($tag) {
+        if(! empty($tag->locals->event['category']))
+            return self::wrap($tag, $tag->locals->event['category']['description']);
+        return '';
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:category_name /> </ion:eventcalendar:events>
+     */
+    public static function category_name($tag) {
+        if(! empty($tag->locals->event['category']))
+            return self::wrap($tag, $tag->locals->event['category']['name']);
+        return '';
+    }
+    
+    /**
+     * @usage :
+     * 		<ion:eventcalendar:events> <ion:category_color /> </ion:eventcalendar:events>
+     */
+    public static function category_color($tag) {
+        if(! empty($tag->locals->event['category']))
+            return self::wrap($tag, $tag->locals->event['category']['color']);
+        return '';
+    }
 
-		return $output;
-	}
-
-	/**
-	 * <ion:id_event />
-	 */
-	public static function id_event(FTL_Binding $tag)
-	{
-		return $tag->locals->event["id_event"];
-	}
-
-	/**
-	 * <ion:author />
-	 */
-	public static function author(FTL_Binding $tag)
-	{
-		return $tag->locals->event["author"];
-	}
-
-	/**
-	 * <ion:created />
-	 */
-	public static function created(FTL_Binding $tag)
-	{
-		return $tag->locals->event["created"];
-	}
-
-	/**
-	 * <ion:start_date />
-	 */
-	public static function start_date(FTL_Binding $tag)
-	{
-		$startdate = ( ! empty($tag->locals->event["start_date"])) ? $tag->locals->event["start_date"] : '';
-		return $startdate;
-	}
-
-	/**
-	 * <ion:end_date />
-	 */
-	public static function end_date(FTL_Binding $tag)
-	{
-		$enddate = ( ! empty($tag->locals->event["end_date"])) ? $tag->locals->event["end_date"] : '';
-		return $enddate;
-	}
-
-	/**
-	 * <ion:name />
-	 */
-	public static function name(FTL_Binding $tag)
-	{
-		return $tag->locals->event["name"];
-	}
-
-	/**
-	 * <ion:url />
-	 */
-	public static function url(FTL_Binding $tag)
-	{
-		return $tag->locals->event["url"];
-	}
-
-	/**
-	 * <ion:title />
-	 */
-	public static function title($tag)
-	{
-		$title = ( ! empty($tag->locals->event_lang["title"])) ? $tag->locals->event_lang["title"] : '';
-		return addslashes($title);
-	}
-
-	/**
-	 * <ion:subtitle />
-	 */
-	public static function subtitle($tag)
-	{
-		$subtitle = ( ! empty($tag->locals->event_lang["subtitle"])) ? $tag->locals->event_lang["subtitle"] : '';
-		return addslashes($subtitle);
-	}
-
-	/**
-	 * <ion:description />
-	 */
-	public static function description($tag)
-	{
-		$description = ( ! empty($tag->locals->event_lang["description"])) ? $tag->locals->event_lang["description"] : '';
-		// Suppression des retours à la ligne
-		$search = array("\r\n", "\n", "\r");
-		$description = str_replace($search, '', $description);
-		return addslashes($description);
-	}
-
-	/**
-	 * <ion:eventcalendar>
-	 *      <ion:categories>
-	 *          ..........
-	 *      </ion:categories>
-	 * </ion:eventcalendar>
-	 */
-	public static function categories(FTL_Binding $tag)
-	{
-		$CI =& get_instance();
-		// Loading Eventcalendar Model
-		if (!isset($CI->eventcalendar_model)) $CI->load->model('eventcalendar_model', '', true);
-	
-		// Loading Categories
-		$categories = $CI->eventcalendar_model->getCategories();
-	
-		if (isset($categories))
-			$tag->locals->count = sizeof( $categories );
-		else
-			$tag->locals->count = 0;
-	
-		$output = "";
-	
-		foreach ($categories as $category)
-		{
-			$tag->locals->event_category  = $category;
-	
-			$output .= $tag->expand();
-		}
-	
-		return $output;
-	}
-	
-	/**
-	 * <ion:category_id />
-	 */
-	public static function category_id(FTL_Binding $tag)
-	{
-		return $tag->locals->event_category["id_category"];
-	}
-
-	/**
-	 * <ion:category_name />
-	 */
-	public static function category_name($tag)
-	{
-		$category_name = ( ! empty($tag->locals->event_category['name'])) ? $tag->locals->event_category['name'] : '';
-		return addslashes($category_name);
-	}
-
-	/**
-	 * <ion:category_color />
-	 */
-	public static function category_color($tag)
-	{
-		$category_color = ( ! empty($tag->locals->event_category['color'])) ? $tag->locals->event_category['color'] : '#3366CC';
-		return addslashes($category_color);
-	}
-
-	/**
-	 * Number of events
-	 */
-	public static function count(FTL_Binding $tag)
-	{
-		$CI =& get_instance();
-		if (!isset($CI->eventcalendar_model)) $CI->load->model('eventcalendar_model', '', true);
-
-		$events = $CI->eventcalendar_model->getEvents();
-
-		return sizeof( $events );
-	}
 }
