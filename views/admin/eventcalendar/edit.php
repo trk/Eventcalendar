@@ -4,7 +4,15 @@
     <input name="id_event" type="hidden" value="<?= $id_event ?>" />
     <input name="author" type="hidden" value="<?= $author ?>" />
     <input name="created" type="hidden" value="<?= $created ?>" />
-
+    
+    <!-- Event Name -->
+    <dl class="small">
+        <dt><label for="name"><?= lang('ionize_label_name') ?></label></dt>
+        <dd>
+            <input id="name" name="name" class="inputtext required" type="text" value="<?= $name ?>" />
+        </dd>
+    </dl>
+    
     <!-- Category -->
     <dl class="small">
         <dt><label for=id_category><?= lang('ionize_label_category') ?></label></dt>
@@ -130,5 +138,5 @@
     );
         
     /** Window resize **/
-    ION.windowResize('event<?= $id_event ?>', {'width':480,'height':415});
+    ION.windowResize('event<?= $id_event ?>', {'width':480,'height':445});
 </script>
