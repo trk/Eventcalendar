@@ -22,7 +22,7 @@
                     <dt><label for=id_category><?= lang('ionize_label_category') ?></label></dt>
                     <dd>
                         <select id="id_category" name="id_category" class="select">
-                            <option value="0">-- NONE --</option>
+                            <option value="0"><?= lang('module_eventcalendar_label_none') ?></option>
                             <?php foreach ($categories as $category) : ?>
                                 <option value="<?= $category['id_category'] ?>"><?= ($category['title'] != '') ? $category['title'] : $category['name'] ?></option>
                             <?php endforeach; ?>

@@ -21,8 +21,8 @@
                 <dl class="small">
                     <dt><label for="color"><?= lang('module_eventcalendar_label_color') ?></label></dt>
                     <dd>
-                        <input id="color" name="color" class="inputtext" type="text" value="" />
-                        <div id="cp">Color picker container</div>
+                        <input id="newColor" name="color" class="inputtext" type="text" value="" />
+                        <div id="newCP"><?= lang('module_eventcalendar_label_color_picker_container') ?></div>
                     </dd>
                 </dl>
                 <fieldset id="blocks">
@@ -117,18 +117,18 @@
         {
             // Color Picker
             // Create the color picker with some colors
-            var cp = new MooColorPicker($('cp'), {
+            var newCP = new MooColorPicker($('newCP'), {
                 colors: ["#6D071A", "#FF0000", "#FF5900", "#FF9300", "#E8CC06", 
                     "#FFFF33", "#CDDE47", "#84D41D", "#05966D", 
                     "#4EA9A0", "#006D80", "#5EB6DD", "#3366FF", "#000099", 
                     "#080830", "#50468C", "#853894" 
                 ]
             });
-            cp.selectColor("#3366FF");
+            newCP.selectColor("#3366FF");
             // Display current color
-            $('color').set('value', cp.getCurrentColor());
-            cp.addEvent('change', function(col, box) {
-                $('color').set('value', col);
+            $('newColor').set('value', newCP.getCurrentColor());
+            newCP.addEvent('change', function(col, box) {
+                $('newColor').set('value', col);
             });
         }
     });
