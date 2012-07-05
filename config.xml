@@ -11,6 +11,7 @@
         <table name="module_eventcalendar" if_not_exists="true" engine="InnoDB" default_charset="utf8" collate="utf8_unicode_ci" auto_increment="1">
             <primary_key>id_event</primary_key>
             <column name="id_event" type="int" length="11" attributes="UNSIGNED" zerofill="NOT NULL" auto_increment="true" ></column>
+            <column name="name" type="varchar" length="255" zerofill="NOT NULL"></column>
             <column name="start_date" type="datetime" zerofill="NOT NULL"></column>
             <column name="end_date" type="datetime" default="0000-00-00 00-00-00" zerofill="NOT NULL"></column>
             <column name="author" type="varchar" length="255" zerofill="NOT NULL"></column>
