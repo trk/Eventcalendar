@@ -1,36 +1,39 @@
-<?php if (!defined('BASEPATH')) exit('No direct script access allowed');
+<?php
+
+if (!defined('BASEPATH'))
+    exit('No direct script access allowed');
 
 class Eventcalendar extends Module_Admin {
 
     public $data = '';
     public $lang_data = '';
-    
+
     function construct() {
-        
+
         // Controller URL & Controller Fodler
-    	$this->controller_url = config_item('module_eventcalendar_url') . 'eventcalendar/';
-    	$this->controller_folder = 'admin/eventcalendar/';
-        
+        $this->controller_url = config_item('module_eventcalendar_url') . 'eventcalendar/';
+        $this->controller_folder = 'admin/eventcalendar/';
+
         // Load Event Calendar Model File
         $this->load->model('Eventcalendar_model', 'eventcalendar_model', true);
         $this->load->model('Eventcalendarcategory_model', 'eventcalendarcategory_model', true);
         $this->load->model('Article_model', 'article_model', true);
-        
+
         // Controller Database Tables
-        $this->table        = 'module_eventcalendar';
-        $this->lang_table   = 'module_eventcalendar_lang';
-        $this->pk_name      = 'id_event';
-		
+        $this->table = 'module_eventcalendar';
+        $this->lang_table = 'module_eventcalendar_lang';
+        $this->pk_name = 'id_event';
+
         // Send Controller URL to Templates
         $this->template['controller_url'] = $this->controller_url;
     }
 
     function index() {
-        
+
         $this->template['events'] = $this->eventcalendar_model->_get_events(FALSE, Settings::get_lang());
         // $this->template['events'] = self::_get_events();
         $this->template['categories'] = $this->eventcalendarcategory_model->get_lang_list(FALSE, Settings::get_lang());
-        
+
         $this->output($this->controller_folder . 'index');
     }
 
@@ -56,7 +59,7 @@ class Eventcalendar extends Module_Admin {
 //        
 //        return $events;
 //    }
-    
+
     function save() {
 
         $id_facility = ($this->input->post('id_facility')) ? $this->input->post('id_facility') : '';
@@ -64,13 +67,13 @@ class Eventcalendar extends Module_Admin {
         $id_article = ($this->input->post('id_article')) ? $this->input->post('id_article') : '';
 
         $this->_prepare_data();
-        
+
         if ($this->eventcalendar_model->save($this->data, $this->lang_data)) {
-            
+
             $this->callback[] = array(
                 'fn' => 'ION.updateElement',
                 'args' => array(
-                    'element'=> 'mainPanel',
+                    'element' => 'mainPanel',
                     'url' => $this->controller_url . 'index'
                 )
             );
@@ -81,7 +84,6 @@ class Eventcalendar extends Module_Admin {
             );
 
             $this->response();
-            
         } else {
 
             $this->callback[] = array(
@@ -92,7 +94,7 @@ class Eventcalendar extends Module_Admin {
             $this->response();
         }
     }
-    
+
     function edit($id = NULL) {
 
         $id = (!is_null($id)) ? $id : $this->input->post('id_event');
@@ -105,7 +107,7 @@ class Eventcalendar extends Module_Admin {
 
         $this->output($this->controller_folder . 'edit');
     }
-    
+
     function delete($id) {
 
         Cache()->clear_cache();
@@ -149,10 +151,10 @@ class Eventcalendar extends Module_Admin {
             $this->response();
         }
     }
-    
+
     /**
      * Prepare data before saving
-     **/
+     * */
     function _prepare_data($xhr = FALSE) {
         // Standard fields
         $fields = $this->db->list_fields($this->table);
@@ -171,6 +173,177 @@ class Eventcalendar extends Module_Admin {
                 if ($this->input->post($field . '_' . $language['lang']) !== false)
                     $this->lang_data[$language['lang']][$field] = $this->input->post($field . '_' . $language['lang']);
             }
+        }
+    }
+
+    /**
+     * Adds "Addons" to core panels
+     * When set, this function will be automatically called for each core panel.
+     *
+     * One addon is a view from the module which will be displayed in a core panel,
+     * to add some interaction with the current edited element (page, article)
+     *
+     * 
+     * @param	String		Core Element to add the addon to. Can be 'page', 'article', 'media'
+     * @param	String		Placeholder which will display the addon
+     *  					- 'side_top' : Side Column, Top
+     *  					- 'side_bottom' : Side Column, Bottom
+     *  					- 'main_top' : Main Column, Top
+     *  					- 'main_bottom' : Main Column, Top
+     *  					- 'toolbar' : Top toolbar
+     * 
+     *
+     */
+    function _addons() {
+        $CI = & get_instance();
+        $CI->load_addon_view('eventcalendar', 'article', 'side_top', config_item('module_eventcalendar_addons_folder') . 'addon_article_side_top', array('controller_url' => config_item('module_eventcalendar_url') . 'eventcalendar/'));
+    }
+
+    function _check_event($id_article = NULL) {
+
+        $id_article = (!is_null($id_article)) ? $id_article : $this->input->post('id_article');
+
+        $this->template['id_article'] = $id_article;
+
+        if (count($this->eventcalendar_model->get_row_array($id_article, 'id_article')) > 0)
+            $this->output($this->controller_folder . 'addon_article_side_top_unlink');
+        else
+            $this->output($this->controller_folder . 'addon_article_side_top');
+    }
+
+    function attach_article($id_article = NULL) {
+
+        $id_article = (!is_null($id_article)) ? $id_article : $this->input->post('id_article');
+
+        $this->template['id_article'] = $id_article;
+
+        $this->template['events'] = $this->eventcalendar_model->_get_events(FALSE, Settings::get_lang());
+
+        $this->output($this->controller_folder . 'attach_article');
+    }
+
+    function _attachArticle($id_event = NULL, $id_article = NULL) {
+
+        $id_event = (!is_null($id_event)) ? $id_event : $this->input->post('id_event');
+        $id_article = (!is_null($id_article)) ? $id_article : $this->input->post('id_article');
+
+        if (count($this->eventcalendar_model->get_row_array($id_event)) > 0) {
+
+            $data = array(
+                'id_event' => $id_event,
+                'id_article' => $id_article
+            );
+
+            if ($this->eventcalendar_model->update($id_event, $data)) {
+
+                // Send Success Message
+                $this->callback = array(
+                    array(
+                        'fn' => 'ION.HTML',
+                        'args' => array(
+                            $this->controller_url . '_check_event',
+                            array(
+                                'id_article' => $id_article
+                            ),
+                            array(
+                                'update' => 'eventcalendar_article_side_top_xhrloader'
+                            )
+                        ),
+                    ),
+                    array(
+                        'fn' => 'ION.notification',
+                        'args' => array('success', lang('module_eventcalendar_callback_event_attached'))
+                    )
+                );
+                
+                $this->callback[] = array
+                (
+                    'fn' => "ION.closeWindow",
+                    'args' => array(
+                            'wattachEvent' . $id_article
+                        )
+                );
+                
+                $this->response();
+                
+            } else {
+
+                // Send Error Message
+                $this->callback[] = array
+                    (
+                    'fn' => 'ION.notification',
+                    'args' => array('error', lang('module_eventcalendar_callback_event_nattached'))
+                );
+
+                $this->response();
+            }
+        } else {
+
+            // Send Error Message
+            $this->callback[] = array
+                (
+                'fn' => 'ION.notification',
+                'args' => array('error', lang('module_eventcalendar_callback_event_nattached'))
+            );
+
+            $this->response();
+        }
+    }
+
+    function unlink_article($id_article = NULL) {
+
+        $id_article = (!is_null($id_article)) ? $id_article : $this->input->post('id_article');
+
+        $event = $this->eventcalendar_model->get_row_array($id_article, 'id_article');
+        
+        if (count($event) > 0) {
+            $data = array(
+                'id_event' => $event['id_event'],
+                'id_article' => 0
+            );
+
+            if ($this->eventcalendar_model->update($event['id_event'], $data)) {
+
+                // Send Success Message
+                $this->callback = array(
+                    array(
+                        'fn' => 'ION.HTML',
+                        'args' => array(
+                            $this->controller_url . '_check_event',
+                            array(
+                                'id_article' => $id_article
+                            ),
+                            array(
+                                'update' => 'eventcalendar_article_side_top_xhrloader'
+                            )
+                        ),
+                    ),
+                    array(
+                        'fn' => 'ION.notification',
+                        'args' => array('success', lang('module_eventcalendar_callback_event_unlinked'))
+                    )
+                );
+                $this->response();
+            } else {
+
+                // Send Error Message
+                $this->callback[] = array
+                    (
+                    'fn' => 'ION.notification',
+                    'args' => array('error', lang('module_eventcalendar_callback_event_nunlinked'))
+                );
+
+                $this->response();
+            }
+        } else {
+            // Send Error Message
+            $this->callback[] = array
+                (
+                'fn' => 'ION.notification',
+                'args' => array('error', lang('module_eventcalendar_callback_event_nunlinked'))
+            );
+
+            $this->response();
         }
     }
 
