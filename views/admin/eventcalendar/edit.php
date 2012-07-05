@@ -1,7 +1,7 @@
 <form name="eventForm<?= $id_event ?>" id="eventForm<?= $id_event ?>" action="<?= $controller_url ?>save">
 
     <!-- Hidden fields -->
-    <input name="id_event" type="hidden" value="<?= $event['id_event'] ?>" />
+    <input name="id_event" type="hidden" value="<?= $id_event ?>" />
     <input name="author" type="hidden" value="<?= $author ?>" />
     <input name="created" type="hidden" value="<?= $created ?>" />
 
