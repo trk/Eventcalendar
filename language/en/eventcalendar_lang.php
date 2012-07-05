@@ -64,3 +64,14 @@ $lang['module_eventcalendar_edit_category']         = 'Edit Category';
 $lang['module_eventcalendar_save_category']         = 'New Category';
 $lang['module_eventcalendar_category_name']         = 'Category Name';
 $lang['module_eventcalendar_category_color']        = 'Category Color';
+
+// Date Translations
+$lang['module_eventcalendar_year'] = 'Year';
+$lang['module_eventcalendar_today'] = 'Today';
+$lang['module_eventcalendar_month'] = 'Month';
+$lang['module_eventcalendar_week'] = 'Week';
+$lang['module_eventcalendar_day'] = 'Day';
+
+// Other Translations
+$lang['module_eventcalendar_loading'] = 'Loading...';
+$lang['module_eventcalendar_uncategorized'] = 'Uncategorized';
