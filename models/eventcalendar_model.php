@@ -29,7 +29,6 @@ class Eventcalendar_model extends Base_model {
         
         $events     = $this->eventcalendar_model->get_lang_list($where, $lang);
         $categories = $this->eventcalendarcategory_model->get_lang_list(FALSE, $lang);
-        $articles   = $this->article_model->get_lang_list(FALSE, $lang);
         
         if(count($events > 0)) {
             
@@ -40,14 +39,29 @@ class Eventcalendar_model extends Base_model {
                     foreach ($categories as $Ckey => $Cvalue)
                         if($Cvalue['id_category'] == $Evalue['id_category'] && $Cvalue['lang'] == $Evalue['lang'])
                             $data[$Ekey]['category'] = $Cvalue;
-                if($Evalue['id_article'] != 0 && $Evalue['id_article'] != '')
-                    foreach ($articles as $Akey => $Avalue)
-                        if($Avalue['id_article'] == $Evalue['id_article'] && $Avalue['lang'] == $Evalue['lang'])
-                            $data[$Ekey]['article'] = $Cvalue;
             }
         }
         
         return $data;
+    }
+    /**
+    * Modded for Expanded Use 
+    * Get one row_array
+    *
+    * @access	public
+    * @param 	int		The result id
+    * @return	object	A row object
+    *
+    */
+    public function get_row_array($id = NULL, $pk_name = NULL, $table = NULL)
+    {
+        $pk_name = (! is_null($pk_name)) ? $pk_name : $this->pk_name;
+        $table = (! is_null($table)) ? $table : $this->table;
+        
+        $this->{$this->db_group}->where($pk_name, $id);
+        $query = $this->{$this->db_group}->get($table);
+
+        return $query->row_array();
     }
     
    /**
