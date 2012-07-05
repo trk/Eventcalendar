@@ -27,33 +27,35 @@ class Eventcalendar extends Module_Admin {
 
     function index() {
         
-        $this->template['events'] = self::_get_events();
+        $this->template['events'] = $this->eventcalendar_model->_get_events(FALSE, Settings::get_lang());
+        // $this->template['events'] = self::_get_events();
         $this->template['categories'] = $this->eventcalendarcategory_model->get_lang_list(FALSE, Settings::get_lang());
         
         $this->output($this->controller_folder . 'index');
     }
-    
-    function _get_events() {
-        
-        $data = array();
-        
-        $events     = $this->eventcalendar_model->get_lang_list(FALSE, Settings::get_lang());
-        $categories = $this->eventcalendarcategory_model->get_lang_list(FALSE, Settings::get_lang());
-        $articles   = $this->article_model->get_lang_list(FALSE, Settings::get_lang());
-        
-        foreach ($events as $Ekey => $Evalue) {
-            if($Evalue['id_category'] != 0 && $Evalue['id_category'] != '')
-                foreach ($categories as $Ckey => $Cvalue)
-                    if($Cvalue['id_category'] == $Evalue['id_category'] && $Cvalue['lang'] == $Evalue['lang'])
-                        $events[$Ekey]['category'] = $Cvalue;
-            if($Evalue['id_article'] != 0 && $Evalue['id_article'] != '')
-                foreach ($articles as $Akey => $Avalue)
-                    if($Avalue['id_article'] == $Evalue['id_article'] && $Avalue['lang'] == $Evalue['lang'])
-                        $events[$Ekey]['article'] = $Cvalue;
-        }
-        
-        return $events;
-    }
+
+// Function added to Model file for Glabal Use
+//    function _get_events() {
+//        
+//        $data = array();
+//        
+//        $events     = $this->eventcalendar_model->get_lang_list(FALSE, Settings::get_lang());
+//        $categories = $this->eventcalendarcategory_model->get_lang_list(FALSE, Settings::get_lang());
+//        $articles   = $this->article_model->get_lang_list(FALSE, Settings::get_lang());
+//        
+//        foreach ($events as $Ekey => $Evalue) {
+//            if($Evalue['id_category'] != 0 && $Evalue['id_category'] != '')
+//                foreach ($categories as $Ckey => $Cvalue)
+//                    if($Cvalue['id_category'] == $Evalue['id_category'] && $Cvalue['lang'] == $Evalue['lang'])
+//                        $events[$Ekey]['category'] = $Cvalue;
+//            if($Evalue['id_article'] != 0 && $Evalue['id_article'] != '')
+//                foreach ($articles as $Akey => $Avalue)
+//                    if($Avalue['id_article'] == $Evalue['id_article'] && $Avalue['lang'] == $Evalue['lang'])
+//                        $events[$Ekey]['article'] = $Cvalue;
+//        }
+//        
+//        return $events;
+//    }
     
     function save() {
 
