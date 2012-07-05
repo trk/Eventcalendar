@@ -11,9 +11,62 @@
             $(document).ready(function() {
 	
                 $('#calendar').fullCalendar({
-		
-                    //editable: true,
-			
+                    buttonText: {
+                        prev:     '&nbsp;&#9668;&nbsp;',  // left triangle
+                        next:     '&nbsp;&#9658;&nbsp;',  // right triangle
+                        prevYear: '<ion:translation term="module_eventcalendar_year" />-1', // <<
+                        nextYear: '<ion:translation term="module_eventcalendar_year" />+1', // >>
+                        today:    '<ion:translation term="module_eventcalendar_today" />',
+                        month:    '<ion:translation term="module_eventcalendar_month" />',
+                        week:     '<ion:translation term="module_eventcalendar_week" />',
+                        day:      '<ion:translation term="module_eventcalendar_day" />'
+                    },
+                    monthNames:[
+                        '<ion:translation term="january" />',
+                        '<ion:translation term="february" />',
+                        '<ion:translation term="march" />',
+                        '<ion:translation term="april" />',
+                        '<ion:translation term="may" />',
+                        '<ion:translation term="june" />',
+                        '<ion:translation term="july" />',
+                        '<ion:translation term="august" />',
+                        '<ion:translation term="september" />',
+                        '<ion:translation term="october" />',
+                        '<ion:translation term="november" />',
+                        '<ion:translation term="december" />'
+                    ],
+                    monthNamesShort: [
+                        '<ion:translation term="jan" />',
+                        '<ion:translation term="feb" />',
+                        '<ion:translation term="mar" />',
+                        '<ion:translation term="apr" />',
+                        '<ion:translation term="may" />',
+                        '<ion:translation term="jun" />',
+                        '<ion:translation term="jul" />',
+                        '<ion:translation term="aug" />',
+                        '<ion:translation term="sep" />',
+                        '<ion:translation term="oct" />',
+                        '<ion:translation term="nov" />',
+                        '<ion:translation term="dec" />'
+                    ],
+                    dayNames: [
+                        '<ion:translation term="sunday" />',
+                        '<ion:translation term="monday" />',
+                        '<ion:translation term="tuesday" />',
+                        '<ion:translation term="wednesday" />',
+                        '<ion:translation term="thursday" />',
+                        '<ion:translation term="friday" />',
+                        '<ion:translation term="saturday" />',
+                    ],
+                    dayNamesShort: [
+                        '<ion:translation term="sun" />',
+                        '<ion:translation term="mon" />',
+                        '<ion:translation term="tue" />',
+                        '<ion:translation term="wed" />',
+                        '<ion:translation term="thu" />',
+                        '<ion:translation term="fri" />',
+                        '<ion:translation term="sat" />',
+                    ],
                     events: "<ion:base_url /><ion:current_lang />/eventcalendar/events",
 			
                     loading: function(bool) {
@@ -46,7 +99,7 @@
                 margin: 0 auto;
             }
 
-            #external-events {
+            #eventcalendar-categories {
                 float: left;
                 width: 150px;
                 padding: 0 10px;
@@ -55,30 +108,18 @@
                 text-align: left;
             }
 
-            #external-events h4 {
+            #eventcalendar-categories h4 {
                 font-size: 16px;
                 margin-top: 0;
                 padding-top: 1em;
             }
 
-            .external-event { /* try to mimick the look of a real event */
+            .eventcalendar-category { /* try to mimick the look of a real event */
                 margin: 10px 0;
-                padding: 2px 4px;
-                background: #3366CC;
+                padding: 4px 6px;
                 color: #fff;
+                font-weight: bold;
                 font-size: .85em;
-                cursor: pointer;
-            }
-
-            #external-events p {
-                margin: 1.5em 0;
-                font-size: 11px;
-                color: #666;
-            }
-
-            #external-events p input {
-                margin: 0;
-                vertical-align: middle;
             }
 
             #calendar {
@@ -91,16 +132,16 @@
     <body>
         <div id='wrap'>
             <div id='loading' style='display:none'><ion:translation term="module_eventcalendar_loading" /></div>
-            <div id='external-events'>
-                <h4>Draggable Events</h4>
-                <div class='external-event'>My Event 1</div>
-                <div class='external-event'>My Event 2</div>
-                <div class='external-event'>My Event 3</div>
-                <div class='external-event'>My Event 4</div>
-                <div class='external-event'>My Event 5</div>
-                <p>
-                    <input type='checkbox' id='drop-remove' /> <label for='drop-remove'>remove after drop</label>
-                </p>
+            <div id='eventcalendar-categories'>
+                <h4><ion:translation term="module_eventcalendar_title_categories" /></h4>
+                <ion:eventcalendar:categories>
+                    <div class='eventcalendar-category' style="background-color: <ion:category_color />;">
+                        <?= ('<ion:category_title />' != '') ? '<ion:category_title />' : '<ion:category_name />' ?>
+                    </div>
+                </ion:eventcalendar:categories>
+                <div class='eventcalendar-category' style="background-color: #3366CC;">
+                    <ion:translation term="module_eventcalendar_uncategorized" />
+                </div>                
             </div>
 
             <div id='calendar'></div>
