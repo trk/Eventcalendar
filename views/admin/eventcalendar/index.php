@@ -17,6 +17,14 @@
         <div class="tabsidecolumn">
             <h2><?= lang('module_eventcalendar_label_add_new_event') ?></h2>
             <form name="newEventForm" id="newEventForm" action="<?= $controller_url ?>save">
+                <!-- Event Name -->
+                <dl class="small">
+                    <dt><label for="name"><?= lang('ionize_label_name') ?></label></dt>
+                    <dd>
+                        <input id="name" name="name" class="inputtext required" type="text" value="" />
+                    </dd>
+                </dl>
+                
                 <!-- Category -->
                 <dl class="small">
                     <dt><label for=id_category><?= lang('ionize_label_category') ?></label></dt>
@@ -37,6 +45,7 @@
                         <input id="start_date" name="start_date" class="inputtext required w120 date" type="text" value="" />
                     </dd>
                 </dl>
+                
                 <!-- Event End Date -->
                 <dl class="small">
                     <dt><label for="end_date"><?= lang('module_eventcalendar_event_end_date') ?></label></dt>
@@ -126,7 +135,7 @@
                         <td style="overflow:hidden;" class="title">
                             <div style="overflow:hidden;">
                                 <span class="toggler left" rel="content<?= $event['id_event'] ?>">
-                                    <a class="left article" rel="0.<?= $event['id_event'] ?>"><span class="flag flag"></span><?= $event['title'] ?></a>
+                                    <a class="left article" rel="0.<?= $event['id_event'] ?>"><span class="flag flag"></span><?= ($event['title'] != '') ? $event['title'] : $event['name'] ?></a>
                                 </span>
                             </div>
 
