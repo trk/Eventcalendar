@@ -61,7 +61,7 @@
                                 <dl class="small">
                                     <dt><label for="description_<?= $lang ?>"><?= lang('ionize_label_description') ?></label></dt>
                                     <dd>
-                                        <textarea id="description_<?= $lang ?>" name="description_<?= $lang ?>" class="tinyEventCategory" rel="<?= $lang ?>"></textarea>
+                                        <textarea id="description_<?= $lang ?>" name="description_<?= $lang ?>" class="tinyCategory" rel="<?= $lang ?>"></textarea>
                                     </dd>
                                 </dl>
 
@@ -173,6 +173,6 @@
     });
 
     /** TinyEditors **/
-    ION.initTinyEditors('.tab_eventCategory', '#eventCategoryTabContent .tinyEventCategory', 'small');
+    ION.initTinyEditors('.tab_eventCategory', '#eventCategoryTabContent .tinyCategory', 'small');
 
 </script>
