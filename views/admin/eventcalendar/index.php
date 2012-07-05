@@ -13,21 +13,18 @@
         <p class="lite"><?= lang('module_eventcalendar_subtitle') ?></p>
     </div>
     <hr />
-    <!-- <?= trace($events) ?> -->
     <div class="tabcontent">
         <div class="tabsidecolumn">
             <h2><?= lang('module_eventcalendar_label_add_new_event') ?></h2>
-            <form name="newEventForm" id="newEventForm" action="<?= admin_url() ?>eventcalendar/eventcalendar/save">
+            <form name="newEventForm" id="newEventForm" action="<?= $controller_url ?>save">
                 <!-- Category -->
                 <dl class="small">
                     <dt><label for=id_category><?= lang('ionize_label_category') ?></label></dt>
                     <dd>
                         <select id="id_category" name="id_category" class="select">
-                            <option value="0">--</option>
+                            <option value="0">-- NONE --</option>
                             <?php foreach ($categories as $category) : ?>
-                                <option value="<?= $category['id_category'] ?>">
-                                    <?= $category['name'] ?>
-                                </option>
+                                <option value="<?= $category['id_category'] ?>"><?= ($category['title'] != '') ? $category['title'] : $category['name'] ?></option>
                             <?php endforeach; ?>
                         </select>
                     </dd>
@@ -35,24 +32,20 @@
 
                 <!-- Event Start Date -->
                 <dl class="small">
-                    <dt>
-                    <label for="start_date"><?= lang('module_eventcalendar_event_start_date') ?></label>
-                    </dt>
+                    <dt><label for="start_date"><?= lang('module_eventcalendar_event_start_date') ?></label></dt>
                     <dd>
                         <input id="start_date" name="start_date" class="inputtext required w120 date" type="text" value="" />
                     </dd>
                 </dl>
                 <!-- Event End Date -->
                 <dl class="small">
-                    <dt>
-                    <label for="end_date"><?= lang('module_eventcalendar_event_end_date') ?></label>
-                    </dt>
+                    <dt><label for="end_date"><?= lang('module_eventcalendar_event_end_date') ?></label></dt>
                     <dd>
                         <input id="end_date" name="end_date" class="inputtext required w120 date" type="text" value="" />
                     </dd>
                 </dl>
                 <fieldset id="blocks">
-                    <!-- Category Lang Tabs -->
+                    <!-- Event Calendar Lang Tabs -->
                     <div id="eventTab" class="mainTabs">
                         <ul class="tab-menu">
                             <?php foreach (Settings::get_languages() as $l) : ?>
@@ -106,7 +99,7 @@
                     <dl class="small">
                         <dt>&#160;</dt>
                         <dd>
-                            <button id="bSaveNewEvent" type="button" class="button yes"><?= lang('module_eventcalendar_save_event') ?></button>
+                            <button id="bSaveNewEvent" type="button" class="button yes"><?= lang('ionize_button_save') ?></button>
                         </dd>
                     </dl>
                 </fieldset>
@@ -143,7 +136,7 @@
                                     <table>
                                         <tbody>
                                             <tr>
-                                                <td class="left strong w140"><?= lang('') ?></td>
+                                                <td class="left strong w140"><?= lang('module_eventcalendar_label_display_lang') ?></td>
                                                 <td class="left"><img class="pr5" src="<?= theme_url() ?>images/world_flags/flag_<?= Settings::get_lang() ?>.gif" /></td>
                                             </tr>
                                             <?php if(! empty($event['article'])): ?>
@@ -205,7 +198,6 @@
             </tbody>
         </table>
     </div>
-</div>
 </div>
 <script type="text/javascript">
     
