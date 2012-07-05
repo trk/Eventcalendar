@@ -11,6 +11,11 @@
             $(document).ready(function() {
 	
                 $('#calendar').fullCalendar({
+                    header: {
+                        left: 'title',
+                        center: 'prev,next today',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
                     buttonText: {
                         prev:     '&nbsp;&#9668;&nbsp;',  // left triangle
                         next:     '&nbsp;&#9658;&nbsp;',  // right triangle
