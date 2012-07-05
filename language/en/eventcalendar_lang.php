@@ -37,6 +37,12 @@ $lang['module_eventcalendar_callback_event_category_deleted'] = 'Event category 
 $lang['module_eventcalendar_callback_event_category_ndeleted']    = 'Event category could not delete!';
 $lang['module_eventcalendar_callback_event_category_in_use']    = 'Category in use by event calendar, please delete events or change event category!';
 
+// Attach Callback Messages (Article Attach)
+$lang['module_eventcalendar_callback_event_attached']    = 'Event attach operation succesfull!';
+$lang['module_eventcalendar_callback_event_nattached']    = 'Event could not attached to article!';
+$lang['module_eventcalendar_callback_event_unlinked']    = 'Event unlinked from article successfully!';
+$lang['module_eventcalendar_callback_event_nunlinked']    = 'Event could not unlinked from article!';
+
 // Old Translations
 $lang['module_eventcalendar_event_name']            = 'Event Name';
 $lang['module_eventcalendar_event_date']            = 'Event Date';
@@ -76,3 +82,5 @@ $lang['module_eventcalendar_allday'] = 'All Days';
 // Other Translations
 $lang['module_eventcalendar_loading'] = 'Loading...';
 $lang['module_eventcalendar_uncategorized'] = 'Uncategorized';
+$lang['module_eventcalendar_attach_event'] = 'Attach Event';
+$lang['module_eventcalendar_unlink_event'] = 'Unlink';

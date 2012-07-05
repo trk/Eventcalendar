@@ -37,6 +37,12 @@ $lang['module_eventcalendar_callback_event_category_deleted'] = 'Etkinlik katego
 $lang['module_eventcalendar_callback_event_category_ndeleted']    = 'Etkinlik kategorisi silinemedi!';
 $lang['module_eventcalendar_callback_event_category_in_use']    = 'Kategori etkinlik takviminde kullanılmakta, lütfen etkinliği silin yada kategorisini değiştirin!';
 
+// Geri Bildirim Mesajları (Makaleye Etkinlik Ekleme)
+$lang['module_eventcalendar_callback_event_attached']    = 'Etkinlik ilişkilendirme başarılı!';
+$lang['module_eventcalendar_callback_event_nattached']    = 'Etkinlik makaleyle ilişkilendirilemedi!';
+$lang['module_eventcalendar_callback_event_unlinked']    = 'Etkinlik bağlantısı başarıyla kaldırıldı!';
+$lang['module_eventcalendar_callback_event_nunlinked']    = 'Etkinlik bağlantısı kaldırılamadı!';
+
 // Old Translations
 $lang['module_eventcalendar_event_name']            = 'Etkinlik Adı';
 $lang['module_eventcalendar_event_date']            = 'Etkinlik Tarihi';
@@ -66,3 +72,5 @@ $lang['module_eventcalendar_allday'] = 'Tüm Günler';
 // Other Translations
 $lang['module_eventcalendar_loading'] = 'Yükleniyor...';
 $lang['module_eventcalendar_uncategorized'] = 'Kategorisiz';
+$lang['module_eventcalendar_attach_event'] = 'Etkinlikle İlişkilendir';
+$lang['module_eventcalendar_unlink_event'] = 'Bağlantıyı Kaldır';
