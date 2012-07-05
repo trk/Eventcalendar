@@ -79,6 +79,14 @@ class Eventcalendar_Tags extends TagManager
     
     /**
      * @usage :
+     * 		<ion:eventcalendar:events> <ion:name /> </ion:eventcalendar:events>
+     */
+    public static function name($tag) {
+        return self::wrap($tag, $tag->locals->event['name']);
+    }
+    
+    /**
+     * @usage :
      * 		<ion:eventcalendar:events> <ion:title /> </ion:eventcalendar:events>
      */
     public static function title($tag) {
