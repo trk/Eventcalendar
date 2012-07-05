@@ -28,7 +28,7 @@ class Eventcalendar extends Module_Admin {
     function index() {
         
         $this->template['events'] = self::_get_events();
-        $this->template['categories'] = $this->eventcalendarcategory_model->get_list();
+        $this->template['categories'] = $this->eventcalendarcategory_model->get_lang_list(FALSE, Settings::get_lang());
         
         $this->output($this->controller_folder . 'index');
     }
@@ -59,7 +59,7 @@ class Eventcalendar extends Module_Admin {
 
         $id_facility = ($this->input->post('id_facility')) ? $this->input->post('id_facility') : '';
 
-        $id_article = $this->input->post('id_article');
+        $id_article = ($this->input->post('id_article')) ? $this->input->post('id_article') : '';
 
         $this->_prepare_data();
         
@@ -166,11 +166,8 @@ class Eventcalendar extends Module_Admin {
 
         foreach (Settings::get_languages() as $language) {
             foreach ($fields as $field) {
-                if ($this->input->post($field . '_' . $language['lang']) !== false) {
+                if ($this->input->post($field . '_' . $language['lang']) !== false)
                     $this->lang_data[$language['lang']][$field] = $this->input->post($field . '_' . $language['lang']);
-                } else {
-                    $this->lang_data[$language['lang']][$field] = '';
-                }
             }
         }
     }
