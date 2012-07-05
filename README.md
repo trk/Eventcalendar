@@ -42,4 +42,4 @@ Event Calendar Module For IONIZE CMS
 ![Screenshot](http://i49.tinypic.com/2qjdqmc.png)
 
 ### Example With ion:tags hover effect (thnx @Beninho)
-![Screenshot](http://i49.tinypic.com/iyiu0j.png)
+![Screenshot](http://i47.tinypic.com/28gtild.png)
