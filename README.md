@@ -26,6 +26,15 @@ Event Calendar Module For IONIZE CMS
 ### Categories Main Window Edit Category
 ![Screenshot](http://i50.tinypic.com/5ogr2f.png)
 
+### Event Calendar Article Side Top Addon
+![Screenshot](http://i46.tinypic.com/b8agkn.png)
+
+### Event Calendar Article Side Top Addon Attach Form Window
+![Screenshot](http://i50.tinypic.com/2mcu1s0.png)
+
+### Event Calendar Article Side Top Addon After Attach Event
+![Screenshot](http://i47.tinypic.com/25kmx4n.png)
+
 ### JSON Example View
 ![Screenshot](http://i46.tinypic.com/15gz8e1.png)
 
@@ -33,4 +42,4 @@ Event Calendar Module For IONIZE CMS
 ![Screenshot](http://i49.tinypic.com/2qjdqmc.png)
 
 ### Example With ion:tags hover effect (thnx @Beninho)
-![Screenshot](http://i49.tinypic.com/iyiu0j.png)
+![Screenshot](http://i47.tinypic.com/28gtild.png)
