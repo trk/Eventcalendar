@@ -43,7 +43,7 @@
         </table>
         
         <!-- Event Calendar Category Lang Table -->
-        <table name="module_eventcalendar_lang" if_not_exists="true" engine="InnoDB" default_charset="utf8" collate="utf8_unicode_ci" auto_increment="0">
+        <table name="module_eventcalendar_category_lang" if_not_exists="true" engine="InnoDB" default_charset="utf8" collate="utf8_unicode_ci" auto_increment="0">
             <primary_key>id_category,lang</primary_key>
             <column name="id_category" type="int" length="11" attributes="UNSIGNED" zerofill="NOT NULL" ></column>
             <column name="lang" type="char" length="3" zerofill="NOT NULL"></column>
