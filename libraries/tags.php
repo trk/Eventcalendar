@@ -165,19 +165,23 @@ class Eventcalendar_Tags extends TagManager {
 
     /**
      * @usage :
-     * 		<ion:eventcalendar:events> <ion:start_date /> </ion:eventcalendar:events>
+     *     	<ion:eventcalendar:events> <ion:start_date format="D-M-Y" /> </ion:eventcalendar:events>
      */
     public static function start_date($tag) {
-        return self::wrap($tag, $tag->locals->event['start_date']);
+        return self::wrap($tag, self::format_date($tag, $tag->locals->event['start_date']));
+    //  return self::wrap($tag, $tag->locals->event['start_date']);
     }
 
     /**
      * @usage :
-     * 		<ion:eventcalendar:events> <ion:end_date /> </ion:eventcalendar:events>
+     * 		<ion:eventcalendar:events> <ion:end_date format="D-M-Y" /> </ion:eventcalendar:events>
      */
     public static function end_date($tag) {
-        return self::wrap($tag, $tag->locals->event['end_date']);
+        return self::wrap($tag, self::format_date($tag, $tag->locals->event['end_date']));
+    //  return self::wrap($tag, $tag->locals->event['end_date']);
     }
+
+
 
     /**
      * @usage :
