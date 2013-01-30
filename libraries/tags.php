@@ -4,19 +4,52 @@
  * Event Calendar TagManager
  */
 class Eventcalendar_Tags extends TagManager {
-
-    public static $ci = NULL;
-
+    
     /**
-     * If need load a model use this function
-     * 	@usage :
-     * 		self::load_model('your_model_name', 'your_mode_short_name');
+     * Tags declaration
+     * To be available, each tag must be declared in this static array.
+     *
+     * @var array
+     *
+     * @usage   "<tag scope>" => "<method_in_this_class>"
+     *          Examples :
+     *          "articles:hello" => "my_hello_method" : The tag "hello" will be usable as child of "articles"
+     *          "demo:authors" => "my_authors_method"
      */
-    private static function load_model($model_name, $new_name = '') {
-
-        if (!isset(self::$ci->{$new_name}))
-            self::$ci->load->model($model_name, $new_name, true);
-    }
+    public static $tag_definitions = array
+    (
+        "eventcalendar:count_all" =>                            "count_all",
+        "eventcalendar:event" =>                                "event",
+        "eventcalendar:event:field_event" =>                    "field_event",
+        "eventcalendar:events" =>                               "events",
+        "eventcalendar:events:id_event" =>                      "id_event",
+        "eventcalendar:events:name" =>                          "name",
+        "eventcalendar:events:title" =>                         "title",
+        "eventcalendar:events:subtitle" =>                      "subtitle",
+        "eventcalendar:events:description" =>                   "description",
+        "eventcalendar:events:url" =>                           "url",
+        "eventcalendar:events:start_date" =>                    "start_date",
+        "eventcalendar:events:end_date" =>                      "end_date",
+        "eventcalendar:events:author" =>                        "author",
+        "eventcalendar:events:updater" =>                       "updater",
+        "eventcalendar:events:created" =>                       "created",
+        "eventcalendar:events:updated" =>                       "updated",
+        "eventcalendar:events:event_id_category" =>             "event_id_category",
+        "eventcalendar:events:event_id_article" =>              "event_id_category",
+        "eventcalendar:events:event_category_title" =>          "event_id_category",
+        "eventcalendar:events:event_category_subtitle" =>       "event_id_category",
+        "eventcalendar:events:event_category_description" =>    "event_id_category",
+        "eventcalendar:events:event_category_name" =>           "event_id_category",
+        "eventcalendar:events:event_category_color" =>          "event_id_category",
+        
+        "eventcalendar:categories" =>                       "categories",
+        "eventcalendar:categories:id_category" =>           "id_category",
+        "eventcalendar:categories:category_title" =>        "category_title",
+        "eventcalendar:categories:category_subtitle" =>     "category_subtitle",
+        "eventcalendar:categories:category_description" =>  "category_description",
+        "eventcalendar:categories:category_name" =>         "category_name",
+        "eventcalendar:categories:category_color" =>        "category_color",
+    );
 
     /**
      * @usage	<ion:eventcalendar>
