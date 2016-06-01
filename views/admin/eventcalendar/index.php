@@ -146,7 +146,7 @@
                                         <tbody>
                                             <tr>
                                                 <td class="left strong w140"><?= lang('module_eventcalendar_label_display_lang') ?></td>
-                                                <td class="left"><img class="pr5" src="<?= theme_url() ?>images/world_flags/flag_<?= Settings::get_lang() ?>.gif" /></td>
+                                                <td class="left"><img class="pr5" src="<?= theme_url() ?>styles/original/images/world_flags/flag_<?= Settings::get_lang() ?>.gif" /></td>
                                             </tr>
                                             <?php if(! empty($event['article'])): ?>
                                                 <tr>
