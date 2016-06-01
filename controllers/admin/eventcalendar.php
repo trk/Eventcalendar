@@ -194,9 +194,18 @@ class Eventcalendar extends Module_Admin {
      * 
      *
      */
-    function _addons() {
+function _addons($object = array()) {
         $CI = & get_instance();
-        $CI->load_addon_view('eventcalendar', 'article', 'side_top', config_item('module_eventcalendar_addons_folder') . 'addon_article_side_top', array('controller_url' => config_item('module_eventcalendar_url') . 'eventcalendar/'));
+        $data['article'] = $object;
+                                  
+        $data['controller_url'] = admin_url() . 'module/' . 'eventcalendar' . '/eventcalendar/';
+               $CI->load_addon_view(
+                'eventcalendar',
+                'article',
+                'options_top',
+                'admin/eventcalendar_addons/addon_article_side_top',
+                $data
+                );
     }
 
     function _check_event($id_article = NULL) {
