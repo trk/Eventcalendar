@@ -21,7 +21,6 @@
                     });
                     $('#calendar').fullCalendar('gotoDate', y, mM);
                 });
-
                 $('#calendar').fullCalendar({
                     editable: false,
                     height: 800,
@@ -47,7 +46,7 @@
                         week: 'ddd d/MM', 	// Lun 9/07
                         day: 'dddd d/MM'  	// Lundi 9/07
                     },
-                    allDayText: '<ion:translation term="module_eventcalendar_allday" />',
+                    allDayText: '<ion:lang key="module_eventcalendar_allday" />',
                     header: {
                         left: 'title',
                         center: 'prev,next today',
@@ -56,58 +55,58 @@
                     buttonText: {
                         prev:     '&nbsp;&#9668;&nbsp;',  // left triangle
                         next:     '&nbsp;&#9658;&nbsp;',  // right triangle
-                        prevYear: '<ion:translation term="module_eventcalendar_year" />-1', // <<
-                        nextYear: '<ion:translation term="module_eventcalendar_year" />+1', // >>
-                        today:    '<ion:translation term="module_eventcalendar_today" />',
-                        month:    '<ion:translation term="module_eventcalendar_month" />',
-                        week:     '<ion:translation term="module_eventcalendar_week" />',
-                        day:      '<ion:translation term="module_eventcalendar_day" />'
+                        prevYear: '<ion:lang key="module_eventcalendar_year" />-1', // <<
+                        nextYear: '<ion:lang key="module_eventcalendar_year" />+1', // >>
+                        today:    '<ion:lang key="module_eventcalendar_today" />',
+                        month:    '<ion:lang key="module_eventcalendar_month" />',
+                        week:     '<ion:lang key="module_eventcalendar_week" />',
+                        day:      '<ion:lang key="module_eventcalendar_day" />'
                     },
                     monthNames:[
-                        '<ion:translation term="january" />',
-                        '<ion:translation term="february" />',
-                        '<ion:translation term="march" />',
-                        '<ion:translation term="april" />',
-                        '<ion:translation term="may" />',
-                        '<ion:translation term="june" />',
-                        '<ion:translation term="july" />',
-                        '<ion:translation term="august" />',
-                        '<ion:translation term="september" />',
-                        '<ion:translation term="october" />',
-                        '<ion:translation term="november" />',
-                        '<ion:translation term="december" />'
+                        '<ion:lang key="january" />',
+                        '<ion:lang key="february" />',
+                        '<ion:lang key="march" />',
+                        '<ion:lang key="april" />',
+                        '<ion:lang key="may" />',
+                        '<ion:lang key="june" />',
+                        '<ion:lang key="july" />',
+                        '<ion:lang key="august" />',
+                        '<ion:lang key="september" />',
+                        '<ion:lang key="october" />',
+                        '<ion:lang key="november" />',
+                        '<ion:lang key="december" />'
                     ],
                     monthNamesShort: [
-                        '<ion:translation term="jan" />',
-                        '<ion:translation term="feb" />',
-                        '<ion:translation term="mar" />',
-                        '<ion:translation term="apr" />',
-                        '<ion:translation term="may" />',
-                        '<ion:translation term="jun" />',
-                        '<ion:translation term="jul" />',
-                        '<ion:translation term="aug" />',
-                        '<ion:translation term="sep" />',
-                        '<ion:translation term="oct" />',
-                        '<ion:translation term="nov" />',
-                        '<ion:translation term="dec" />'
+                        '<ion:lang key="jan" />',
+                        '<ion:lang key="feb" />',
+                        '<ion:lang key="mar" />',
+                        '<ion:lang key="apr" />',
+                        '<ion:lang key="may" />',
+                        '<ion:lang key="jun" />',
+                        '<ion:lang key="jul" />',
+                        '<ion:lang key="aug" />',
+                        '<ion:lang key="sep" />',
+                        '<ion:lang key="oct" />',
+                        '<ion:lang key="nov" />',
+                        '<ion:lang key="dec" />'
                     ],
                     dayNames: [
-                        '<ion:translation term="sunday" />',
-                        '<ion:translation term="monday" />',
-                        '<ion:translation term="tuesday" />',
-                        '<ion:translation term="wednesday" />',
-                        '<ion:translation term="thursday" />',
-                        '<ion:translation term="friday" />',
-                        '<ion:translation term="saturday" />',
+                        '<ion:lang key="sunday" />',
+                        '<ion:lang key="monday" />',
+                        '<ion:lang key="tuesday" />',
+                        '<ion:lang key="wednesday" />',
+                        '<ion:lang key="thursday" />',
+                        '<ion:lang key="friday" />',
+                        '<ion:lang key="saturday" />',
                     ],
                     dayNamesShort: [
-                        '<ion:translation term="sun" />',
-                        '<ion:translation term="mon" />',
-                        '<ion:translation term="tue" />',
-                        '<ion:translation term="wed" />',
-                        '<ion:translation term="thu" />',
-                        '<ion:translation term="fri" />',
-                        '<ion:translation term="sat" />',
+                        '<ion:lang key="sun" />',
+                        '<ion:lang key="mon" />',
+                        '<ion:lang key="tue" />',
+                        '<ion:lang key="wed" />',
+                        '<ion:lang key="thu" />',
+                        '<ion:lang key="fri" />',
+                        '<ion:lang key="sat" />',
                     ],
                     events: [
                         <ion:eventcalendar:events>
@@ -153,20 +152,17 @@
             });
         </script>
     <style type='text/css'>
-
         body {
             margin-top: 40px;
             text-align: center;
             font-size: 14px;
             font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
         }
-
         #loading {
             position: absolute;
             top: 5px;
             right: 5px;
         }
-
         #wrap {
             width: 1100px;
             margin: 0 auto;
@@ -186,13 +182,11 @@
             background: #eee;
             text-align: left;
         }
-
         #eventcalendar-categories h4 {
             font-size: 16px;
             margin-top: 0;
             padding-top: 1em;
         }
-
         .eventcalendar-category { /* try to mimick the look of a real event */
             margin: 10px 0;
             padding: 4px 6px;
@@ -200,41 +194,39 @@
             font-weight: bold;
             font-size: .85em;
         }
-
         #calendar {
             float: right;
             width: 900px;
         }
-
     </style>
 </head>
 <body>
     <div id='wrap'>
-        <div id='loading' style='display:none'><ion:translation term="module_eventcalendar_loading" /></div>
+        <div id='loading' style='display:none'><ion:lang key="module_eventcalendar_loading" /></div>
         <div id='eventcalendar-categories'>
-            <h4><ion:translation term="module_eventcalendar_title_categories" /></h4>
+            <h4><ion:lang key="module_eventcalendar_title_categories" /></h4>
             <ion:eventcalendar:categories>
                 <div class='eventcalendar-category' style="background-color: <ion:category_color />;">
                     <?= ('<ion:category_title />' != '') ? '<ion:category_title />' : '<ion:category_name />' ?>
                 </div>
             </ion:eventcalendar:categories>
             <div class='eventcalendar-category' style="background-color: #3366CC;">
-                <ion:translation term="module_eventcalendar_uncategorized" />
+                <ion:lang key="module_eventcalendar_uncategorized" />
             </div>
         </div>
         <select id="monthlist">
-            <option value="0" <?php if(date('n')-1 == 0) echo 'selected="selected"'?>><ion:translation term="january" /></option>
-            <option value="1" <?php if(date('n')-1 == 1) echo 'selected="selected"'?>><ion:translation term="february" /></option>
-            <option value="2" <?php if(date('n')-1 == 2) echo 'selected="selected"'?>><ion:translation term="march" /></option>
-            <option value="3" <?php if(date('n')-1 == 3) echo 'selected="selected"'?>><ion:translation term="april" /></option>
-            <option value="4" <?php if(date('n')-1 == 4) echo 'selected="selected"'?>><ion:translation term="may" /></option>
-            <option value="5" <?php if(date('n')-1 == 5) echo 'selected="selected"'?>><ion:translation term="june" /></option>
-            <option value="6" <?php if(date('n')-1 == 6) echo 'selected="selected"'?>><ion:translation term="july" /></option>
-            <option value="7" <?php if(date('n')-1 == 7) echo 'selected="selected"'?>><ion:translation term="august" /></option>
-            <option value="8" <?php if(date('n')-1 == 8) echo 'selected="selected"'?>><ion:translation term="september" /></option>
-            <option value="9" <?php if(date('n')-1 == 9) echo 'selected="selected"'?>><ion:translation term="october" /></option>
-            <option value="10" <?php if(date('n')-1 == 10) echo 'selected="selected"'?>><ion:translation term="november" /></option>
-            <option value="11" <?php if(date('n')-1 == 11) echo 'selected="selected"'?>><ion:translation term="december" /></option>
+            <option value="0" <?php if(date('n')-1 == 0) echo 'selected="selected"'?>><ion:lang key="january" /></option>
+            <option value="1" <?php if(date('n')-1 == 1) echo 'selected="selected"'?>><ion:lang key="february" /></option>
+            <option value="2" <?php if(date('n')-1 == 2) echo 'selected="selected"'?>><ion:lang key="march" /></option>
+            <option value="3" <?php if(date('n')-1 == 3) echo 'selected="selected"'?>><ion:lang key="april" /></option>
+            <option value="4" <?php if(date('n')-1 == 4) echo 'selected="selected"'?>><ion:lang key="may" /></option>
+            <option value="5" <?php if(date('n')-1 == 5) echo 'selected="selected"'?>><ion:lang key="june" /></option>
+            <option value="6" <?php if(date('n')-1 == 6) echo 'selected="selected"'?>><ion:lang key="july" /></option>
+            <option value="7" <?php if(date('n')-1 == 7) echo 'selected="selected"'?>><ion:lang key="august" /></option>
+            <option value="8" <?php if(date('n')-1 == 8) echo 'selected="selected"'?>><ion:lang key="september" /></option>
+            <option value="9" <?php if(date('n')-1 == 9) echo 'selected="selected"'?>><ion:lang key="october" /></option>
+            <option value="10" <?php if(date('n')-1 == 10) echo 'selected="selected"'?>><ion:lang key="november" /></option>
+            <option value="11" <?php if(date('n')-1 == 11) echo 'selected="selected"'?>><ion:lang key="december" /></option>
         </select>
 
         <div id='calendar'></div>
